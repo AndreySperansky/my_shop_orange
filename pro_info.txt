@@ -1,0 +1,7 @@
+user: admin
+login: admin
+pass: admin
+
+user: Vlad
+login: Vlad
+pass: 24vlad70in
