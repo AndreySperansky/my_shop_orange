@@ -2,59 +2,65 @@
 {% load static %}
 
 {% block title %} {{ title|title }} {% endblock %}
-{#<title>Product Details</title>#}
+
+<!-- Left Side Bar -->
+{% block side_bar %}
+  {% include "mainapp/includes/inc_side_bar.html" %}
+  {#  <hr>#}
+  {#  {% include "mainapp/includes/inc_productfilter.html" %}#}
+{% endblock %}
+<!-- /.col-lg-3 -->
 
 {% block content %}
 
-<div class="col-sm-9 padding-right">
   <div class="product-details"><!--product-details-->
-    <div class="col-sm-5">
-      <div class="view-product">
-        <img src="http://placehold.it/400x400" alt=""/>
-        <h3>ZOOM</h3>
-      </div>
+    <div class="row">
 
-      <div id="similar-product" class="carousel slide" data-ride="carousel">
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div class="item active">
-            <a href=""><img src="http://placehold.it/100x100" alt=""></a>
-            <a href=""><img src="http://placehold.it/100x100" alt=""></a>
-            <a href=""><img src="http://placehold.it/100x100" alt=""></a>
-          </div>
-          <div class="item">
-            <a href=""><img src="http://placehold.it/100x100" alt=""></a>
-            <a href=""><img src="http://placehold.it/100x100" alt=""></a>
-            <a href=""><img src="http://placehold.it/100x100" alt=""></a>
-          </div>
-          <div class="item">
-            <a href=""><img src="http://placehold.it/100x100" alt=""></a>
-            <a href=""><img src="http://placehold.it/100x100" alt=""></a>
-            <a href=""><img src="http://placehold.it/100x100" alt=""></a>
-          </div>
 
+      <div class="col-lg-5">
+        <div class="view-product">
+          <img src="{{ product.image.url }}" alt=""/>
+          <h3>ZOOM</h3>
         </div>
 
-        <!-- Controls -->
-        <a class="left item-control" href="#similar-product" data-slide="prev">
-          <i class="fa fa-angle-left"></i>
-        </a>
-        <a class="right item-control" href="#similar-product" data-slide="next">
-          <i class="fa fa-angle-right"></i>
-        </a>
-      </div>
-    </div>
+        <!--  carousel -->
+        <div id="similar-product" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner ">
+            <div class="carousel-item active">
+              <a href=""><img src="http://placehold.it/100x100" alt=""></a>
+              <a href=""><img src="http://placehold.it/100x100" alt=""></a>
+              <a href=""><img src="http://placehold.it/100x100" alt=""></a>
+            </div>
+            <div class="carousel-item">
+              <a href=""><img src="http://placehold.it/100x100" alt=""></a>
+              <a href=""><img src="http://placehold.it/100x100" alt=""></a>
+              <a href=""><img src="http://placehold.it/100x100" alt=""></a>
+            </div>
+
+          </div>
+
+          <!-- Controls -->
+          <a class="left  item-control" href="#similar-product" data-slide="prev">
+            <i class="fa fa-angle-left"></i>
+          </a>
+          <a class="right item-control loat-right" href="#similar-product" data-slide="next">
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </div>
+      </div><!--/carousel-->
 
 
-    <div class="col-sm-7">
+
+
+    <div class="col-lg-7">
       <div class="product-information"><!--/product-information-->
         <img src="{% static 'img/new.jpg' %}" class="newarrival" alt=""/>
-        <h2>Anne Klein Sleeveless Colorblock Scuba</h2>
+        <h2>{{ product.title }}</h2>
         <p>Web ID: 1089772</p>
         <img src="{% static 'img/rating.png' %}" alt=""/>
         <span>
-									<span>US $59</span>
-									<label>Quantity:</label>
+									<span>{{ product.price }} руб.</span>
+									<label>Qty:</label>
 									<input type="text" value="3"/>
 									<button type="button" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
@@ -67,7 +73,10 @@
         <a href=""><img src="{% static 'img/share.png' %}" class="share img-responsive" alt=""/></a>
       </div><!--/product-information-->
     </div>
+
+  </div>
   </div><!--/product-details-->
-</div>
+
+
 
 {% endblock %}

@@ -10,6 +10,8 @@ class Basket(models.Model):
     quantity = models.PositiveIntegerField(verbose_name='количество', default=0)
     add_datetime = models.DateTimeField(verbose_name='время', auto_now_add=True)
 
+    # basket = request.user.basket.all - получение объектов корзины текущего пользователя в контроллерах
+
     def __str__(self):
         return f'{self.user}: {self.product.title}, {self.product.quantity}'
 

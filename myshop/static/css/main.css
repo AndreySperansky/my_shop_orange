@@ -270,7 +270,7 @@ a#scrollUp i{
   outline: medium none;
   padding-left: 10px;
   width: 155px;
-  /*background-image: url(../images/home/searchicon.png);*/
+  background-image: url(/myshop/static/img/searchicon.png);
   background-repeat: no-repeat;
   background-position: 130px;
 }
@@ -707,7 +707,7 @@ ul.sub-menu {
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 700;
-  margin-top: 50px !important;
+  margin-top: 0;
   text-align: center;
   text-transform: uppercase;
   position: relative;
@@ -886,7 +886,7 @@ h2.title:before{
 
 .features-items{
 	overflow:hidden;
-    margin-top: 50px;
+    margin-top: 0;
 }
 
 
@@ -1244,7 +1244,7 @@ h2.title {
 }
 
 #similar-product .carousel-inner .item{
-	padding-left:0px;
+	padding-left: 0;
 }
 
 #similar-product .carousel-inner .item img {
@@ -1255,15 +1255,21 @@ h2.title {
 .item-control {
   position: absolute;
   top: 35%;
-}
-.item-control i {
   background: #FE980F;
   color: #FFFFFF;
-  font-size: 20px;
-  padding: 5px 10px;
+  font-size: 15px;
+  padding: 5px 5px;
+}
+.right{
+  /*margin-left: 300px;*/
+  right: 19px;
 }
 
-.item-control i:hover{
+.left{
+  left: 0;
+}
+
+.item-control:hover{
 	background:#ccccc6;
 }
 

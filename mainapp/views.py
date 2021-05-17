@@ -11,7 +11,7 @@ from django.views.generic import DetailView, View
 from .models import Category, Product
 from basketapp.models import Basket
 from specs.models import ProductFeatures
-from .mixins import BasketMixin
+from .mixins import BasketMixin, ProductMixin
 
 
 
@@ -104,58 +104,31 @@ class CategoryDetailView(BasketMixin, DetailView):
         return context
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(BasketMixin, ProductMixin, DetailView):
 
     model = Product
     context_object_name = 'product'
-    template_name = 'mainapp/__product_detail.html'
+    template_name = 'mainapp/product-details.html'
     slug_url_kwarg = 'slug'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # context['hot_product'] = get_hot_product()
+        # context['same_products'] = self.same_products
         context['categories'] = self.get_object().category.__class__.objects.all()
-        # context['cart'] = self.cart
+        context['products'] = self.products
+        context['basket'] = self.basket
+        context['title'] = 'product-detail'
         return context
 
 
 # *******************************************************************************************
 
 
-def products(request, slug=None):
-    basket = get_basket(request.user)
-    title = 'продукты'
-    links_menu = Category.objects.all()
 
-    content = {
-        'title': title,
-        'links_menu': links_menu,
-        'basket': basket,
-    }
+    # hot_product = get_hot_product()
+    # same_products = get_same_products(hot_product)
+    #
+    # content['same_products'] = same_products
+    # content['hot_product'] = hot_product
 
-
-    category = get_object_or_404(Category, slug=slug)
-    products = Product.objects.filter(category__slug=slug, is_active=True).order_by('price')
-
-# ***************************** pagination ********************************************
-
-    # paginator = Paginator(products, 2)
-    # try:
-    #     products_paginator = paginator.page(page)
-    # except PageNotAnInteger:
-    #     products_paginator = paginator.page(1)
-    # except EmptyPage:
-    #     products_paginator = paginator.page(paginator.num_pages)
-# ***************************** pagination ********************************************
-
-    content['category'] = category
-    content['products'] = products
-    # content['products'] = products_paginator
-
-    # return render(request, 'mainapp/products.html', content)
-
-    hot_product = get_hot_product()
-    same_products = get_same_products(hot_product)
-
-    content['same_products'] = same_products
-    content['hot_product'] = hot_product
-    return render(request, 'mainapp/products.html', content)

@@ -7,7 +7,7 @@ from django.utils import timezone
 class Category(models.Model):
 
     name = models.CharField(max_length=255, verbose_name='Имя категории')
-    # is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
     slug = models.SlugField(unique=True)
 
     def __str__(self):
@@ -26,8 +26,8 @@ class Product(models.Model):
     description = models.TextField(verbose_name='Описание', null=True)
     price = models.DecimalField(max_digits=9, decimal_places=0, verbose_name='Цена')
     quantity = models.PositiveIntegerField(verbose_name='количество на складе', default=0)
-    # is_active = models.BooleanField(default=True)
-    # features = models.ManyToManyField("specs.ProductFeatures", blank=True, related_name='features_for_product')
+    is_active = models.BooleanField(default=True)
+    features = models.ManyToManyField("specs.ProductFeatures", blank=True, related_name='features_for_product')
 
 
     def __str__(self):
@@ -36,5 +36,5 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('mainapp:product_detail', kwargs={'slug': self.slug})
 
-    # def get_features(self):
-    #     return {f.feature.feature_name: ' '.join([f.value, f.feature.unit or ""]) for f in self.features.all()}
+    def get_features(self):
+        return {f.feature.feature_name: ' '.join([f.value, f.feature.unit or ""]) for f in self.features.all()}
