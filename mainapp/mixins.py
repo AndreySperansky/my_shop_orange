@@ -26,15 +26,15 @@ class BasketMixin(View):
 class ProductMixin(View):
     model = Product
 
-    def get_hot_product(self):
-        self.products = Product.objects.filter(category__is_active=True)
-    #
-        return random.sample(list(self.products), 1)[0]
+    # def get_hot_product(self):
+    #     self.products = Product.objects.filter(category__is_active=True)
 
-    def get_same_products(self, hot_product):
-        self.same_products = Product.objects.filter(category=hot_product.category). \
-                            exclude(pk=hot_product.pk)[:3]
-        return self.same_products
+    #     return random.sample(list(self.products), 1)[0]
+
+    # def get_same_products(self, hot_product):
+    #     self.same_products = Product.objects.filter(category=hot_product.category). \
+    #                         exclude(pk=hot_product.pk)[:3]
+    #     return self.same_products
 
     def dispatch(self, request, slug=None, *args, **kwargs):
 

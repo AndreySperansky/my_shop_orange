@@ -1,6 +1,9 @@
+console.log('Hello from cart!')
+
 window.onload = function () {
-    $('.basket_list').on('click', 'input[type="number"]', function () {
-        var target_href = event.target;
+    $('.basket_list').on('click', 'input[type="number"]', function (e) {
+        var target_href = e.target;
+        console.log('click!')
 
 		if (target_href) {
 			$.ajax({
@@ -12,6 +15,6 @@ window.onload = function () {
 	            },
 	        });
 		}
-        event.preventDefault();
+        e.preventDefault();
     });
 }

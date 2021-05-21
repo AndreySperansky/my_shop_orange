@@ -13,7 +13,7 @@
 
 {% block content %}
 
-  <div class="product-details"><!--product-details-->
+  <div class="product-details"><!--product-description-->
     <div class="row">
 
 
@@ -49,8 +49,7 @@
         </div>
       </div><!--/carousel-->
 
-
-
+   <!--image and short description-->
 
     <div class="col-lg-7">
       <div class="product-information"><!--/product-information-->
@@ -67,7 +66,7 @@
 										Add to cart
 									</button>
 								</span>
-        <p><b>Availability:</b> In Stock</p>
+        <p><b>Availability:</b> {{ product.quantity }} In Stock</p>
         <p><b>Condition:</b> New</p>
         <p><b>Brand:</b> E-SHOPPER</p>
         <a href=""><img src="{% static 'img/share.png' %}" class="share img-responsive" alt=""/></a>
@@ -75,7 +74,22 @@
     </div>
 
   </div>
-  </div><!--/product-details-->
+  </div><!--/product-description-->
+
+  <!--product-specifications-->
+  <div class="specifications">
+  <p class="mt-4">Характеристики:</p>
+    <table class="table">
+      <tbody>
+      {% for f_name, f_value in product.get_features.items %}
+        <tr>
+          <th scope="row">{{ f_name }}</th>
+          <td>{{ f_value }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
 
 

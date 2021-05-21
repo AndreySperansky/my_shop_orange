@@ -44,6 +44,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto', sans-serif;
 }
 
+.h2 {
+  color: #FE980F;
+}
+
 .btn:hover,
 .btn:focus{
   outline: none;
@@ -270,7 +274,7 @@ a#scrollUp i{
   outline: medium none;
   padding-left: 10px;
   width: 155px;
-  background-image: url(/myshop/static/img/searchicon.png);
+  /*background-image: url(../../../myshop/static/img/searchicon.png);*/
   background-repeat: no-repeat;
   background-position: 130px;
 }
@@ -1658,11 +1662,17 @@ h2.title {
 
 #cart_items .cart_info .image {
   padding-left: 30px;
+  margin-right: 20px;
 }
 
 
 #cart_items .cart_info .cart_description h4 {
-  margin-bottom: 0
+  margin-bottom: 0;
+
+}
+
+.cart_description .h4 {
+   color: forestgreen; !important
 }
 
 #cart_items .cart_info .cart_description h4 a {
@@ -1695,7 +1705,7 @@ h2.title {
 }
 .cart_product {
   display: block;
-  margin: 15px -70px 10px 25px;
+  margin: 15px -30px 30px 25px;
 }
 
 .cart_quantity_button a {
@@ -1714,9 +1724,12 @@ h2.title {
 .cart_quantity_input {
   color: #696763;
   float: left;
-  font-size: 16px;
+  font-size: 20px;
   text-align: center;
   font-family: 'Roboto',sans-serif;
+  height: 40px;
+  width: 80px;
+  /*border-color: #FE980F;*/
 }
 
 
@@ -1766,7 +1779,7 @@ h2.title {
   border: 1px solid #E6E4DF;
   color: #696763;
   padding: 30px 25px 30px 0;
-  margin-bottom: 80px;
+  /*margin-bottom: 80px;*/
 }
 
 .total_area span {
@@ -1843,7 +1856,8 @@ h2.title {
   background: #FE980F;
   border-radius: 0;
   color: #FFFFFF;
-  margin-top: 18px;
+  /*margin-top: 18px;*/
+  margin-bottom: 50px;
   border: none;
   padding: 5px 15px;
 }
@@ -2012,8 +2026,8 @@ h2.title {
 }
 
 .payment-options {
-  margin-bottom:125px;
-  margin-top: -25px
+  margin-bottom:50px;
+  margin-top: 25px
 }
 
 .payment-options span label {
