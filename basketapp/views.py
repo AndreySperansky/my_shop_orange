@@ -7,14 +7,23 @@ from django.template.loader import render_to_string
 from django.http import JsonResponse
 
 
+def get_basket(user):
+    if user.is_authenticated:
+        return Basket.objects.filter(user=user)
+    else:
+        return []
+
+
 @login_required
 def basket(request):
     title = 'Cart'
     basket_items = Basket.objects.filter(user=request.user).order_by('product__category')
+    basket = get_basket(request.user)
 
     content = {
         'title': title,
         'basket_items': basket_items,
+        'basket': basket
     }
 
     return render(request, 'basketapp/basket.html', content)
@@ -25,10 +34,12 @@ def basket(request):
 def checkout(request):
     title = 'Checkout'
     basket_items = Basket.objects.filter(user=request.user).order_by('product__category')
+    basket = get_basket(request.user)
 
     content = {
         'title': title,
         'basket_items': basket_items,
+        'basket': basket,
     }
 
     return render(request, 'basketapp/checkout.html', content)

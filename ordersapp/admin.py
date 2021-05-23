@@ -1,25 +1,24 @@
 from django.contrib import admin
+from .models import Order, OrderItem
 
-from .models import Category, Product
-
-class CategoryAdmin(admin.ModelAdmin):
+class OrderAdmin(admin.ModelAdmin):
     # какие поля будут отображаться в админке
-    list_display = ('id', 'name', 'slug',)
+    list_display = ('id', 'user',  'status', 'created', 'updated', 'is_active',)
     # какие поля будут ссылками на соответствующие модели
-    list_display_links = ('id', 'name', 'slug',)
+    list_display_links = ('id',  'user',  'status',)
     # какие поля будут участвовать в поиске
-    search_fields = ('name',)
+    search_fields = ('user',  'status', 'is_active')
 
 
-class ProductAdmin(admin.ModelAdmin):
+class OrderItemAdmin(admin.ModelAdmin):
     # какие поля будут отображаться в админке
-    list_display = ('id', 'category', 'title', 'slug', 'price', 'quantity',)
+    list_display = ('id', 'order', 'product', 'quantity',)
     # какие поля будут ссылками на соответствующие модели
-    list_display_links = ('id', 'category', 'title',)
+    list_display_links = ('id', 'order', 'product', 'quantity',)
     # какие поля будут участвовать в поиске
-    search_fields = ('name', 'category', 'title',)
+    search_fields = ('product',)
 
 
 
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(Product, ProductAdmin)
+admin.site.register(Order, OrderAdmin)
+admin.site.register(OrderItem, OrderItemAdmin)

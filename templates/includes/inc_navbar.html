@@ -1,57 +1,57 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container col-md-2">
-    <a class="navbar-brand" href="#">Group 2/1</a>
+  <div class="container">
+    <a class="navbar-brand" href="#">AndreySperansky</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  </div>
 
-  <div class="col-md-6">
-    <div class="shop-menu pull-right">
-      <ul class="nav navbar-nav">
-        <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-        <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-        <li><a href="{% url 'basketapp:checkout' %}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-        <li><a href="{% url 'basketapp:cart' %}"><i class="fa fa-shopping-cart"></i> Cart
-{#          {% if basket %}#}
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item "><a class="nav-link" href="{% url 'mainapp:index' %}"><i class="fa fa-home"></i> Home </a></li>
+        <li class="nav-item "><a class="nav-link" href="#"><i class="fa fa-user"></i> Account</a></li>
+        <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-star"></i> Wishlist</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'basketapp:checkout' %}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'basketapp:cart' %}"><i class="fa fa-shopping-cart"></i> Cart
+          {% if basket %}
             <span class="badge badge-pill badge-danger">
-              {{ basket|length }}/{{ basket.product.count }}
+              {{ basket|length }} / ({{ basket.0.total_quantity }} шт) / {{ basket.0.total_cost|floatformat:0 }} руб.
             </span>
-{#          {% endif %}#}
-          </a>
+          {% endif %}
+        </a>
         </li>
-{#      <li><a href="#"><i class="fa fa-lock"></i> Login</a></li>#}
+{#        <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-lock"></i> Login</a></li>#}
+
+        {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">{{ user.first_name|default:'Noname' }} <img
+                    src="/media/{{ user.avatar|default:'avatars/avatar-placeholder2.png' }}" alt="..."
+                    class="rounded-circle" width="40"></a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+              <a class="dropdown-item" href="{% url 'authapp:logout' %}">LOG OUT</a>
+              <div class="dropdown-divider"></div>
+              <a id="signup" class="dropdown-item" href="{% url 'authapp:edit' %}">PROFILE</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'order:orders_list' %}">ORDERS</a>
+            </div>
+          </li>
+
+        {% else %}
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+              <a id="login" class="dropdown-item" href="{% url 'authapp:login' %}">LOG IN</a>
+              <div class="dropdown-divider"></div>
+              <a id="signup" class="dropdown-item" href="{% url 'authapp:register' %}">SIGN UP</a>
+            </div>
+          </li>
+
+        {% endif %}
       </ul>
     </div>
   </div>
-
-  <ul class="navbar-nav col-md-2 ml-md-0">
-    {% if user.is_authenticated %}
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false">{{ user.first_name|default:'Noname' }} <img
-                src="/media/{{ user.avatar|default:'avatars/avatar-placeholder2.png' }}" alt="..."
-                class="rounded-circle" width="40"></a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="{% url 'authapp:logout' %}">LOG OUT</a>
-          <div class="dropdown-divider"></div>
-          <a id="signup" class="dropdown-item" href="{% url 'authapp:edit' %}">EDIT</a>
-        </div>
-      </li>
-
-    {% else %}
-
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-          <a id="login" class="dropdown-item" href="{% url 'authapp:login' %}">LOG IN</a>
-          <div class="dropdown-divider"></div>
-          <a id="signup" class="dropdown-item" href="{% url 'authapp:register' %}">SIGN UP</a>
-        </div>
-      </li>
-
-    {% endif %}
-  </ul>
 </nav>

@@ -1,16 +1,23 @@
 <div class="header-bottom"><!--header-bottom-->
   <div class="container">
     <div class="row">
-      <div class="col-sm-9">
+      <div class="col-lg-9">
+        <div class="navbar-header">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                  aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+        </div>
         <div class="mainmenu float-left ">
-          <ul class="nav navbar-nav collapse navbar-collapse">
+          <ul class="nav navbar-nav collapse" id="navbarResponsive">
             <li><a href="{% url 'mainapp:index' %}" class="active">Home</a></li>
             <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
               <ul role="menu" class="sub-menu">
                 <li><a href="{% url 'mainapp:category_detail' slug='notebooks' %}">Products</a></li>
                 <li><a href="#">Wishlist</a></li>
                 <li><a href="#">Checkout</a></li>
-{#                <li><a href="#">Login</a></li>#}
+                {#                <li><a href="#">Login</a></li>#}
                 <li><a href="#">Cart</a></li>
 
               </ul>

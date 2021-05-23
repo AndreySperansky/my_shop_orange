@@ -29,59 +29,59 @@
 
 <body>
 
+  <header>
+     {% include 'includes/inc_navbar.html' %}
+      <!-- Navigation -->
+  {#  {% include 'includes/inc_navbar_bottom.html' %}#}
+  </header>
+
+  <main>
+
     <!-- Modal form -->
-  {% include 'includes/inc_modal.html' %}
-  <!-- Navigation -->
-  {% include 'includes/inc_navbar.html' %}
+    {% include 'includes/inc_modal.html' %}
     <!-- Navigation -->
-  {% include 'includes/inc_navbar_bottom.html' %}
 
+    <!-- Ads Block -->
+    {% block ads %}  {% endblock %}
+    <!-- Message Block -->
 
+    {% include 'includes/inc_message.html' %}
 
-  <!-- Ads Block -->
+    <!-- Page Content -->
+    <div class="container">
 
-  {% block ads %}  {% endblock %}
+      <div class="row">
 
-  <!-- Message Block -->
+        <!-- Left Side Bar -->
+        <div class="col-lg-3">
+          {% block side_bar %} Side_Bar CONTENT {% endblock %}
+          {% block filters %}  {% endblock %}
+        </div>
+        <!-- /.col-lg-3 -->
 
-  {% include 'includes/inc_message.html' %}
+        <!-- Content .col-lg-9-->
+        <div class="col-lg-9">
+          <!-- Page Content -->
+          {% block content %} BASE CONTENT {% endblock %}
 
-  <!-- Page Content -->
-  <div class="container">
-
-    <div class="row">
-
-      <!-- Left Side Bar -->
-      <div class="col-lg-3">
-        {% block side_bar %} Side_Bar CONTENT {% endblock %}
-        {% block filters %}  {% endblock %}
+        </div>
+        <!-- /.col-lg-9 -->
       </div>
-      <!-- /.col-lg-3 -->
-
-      <!-- Content .col-lg-9-->
-      <div class="col-lg-9">
-        <!-- Page Content -->
-        {% block content %} BASE CONTENT {% endblock %}
-
-      </div>
-      <!-- /.col-lg-9 -->
+      <!-- /.row -->
     </div>
-    <!-- /.row -->
-  </div>
-  <!-- /.container -->
+    <!-- /.container -->
+
+  </main>
 
 
-
-
-  <!-- Modal form -->
+  <!-- Footer -->
   {% include 'includes/inc_footer.html' %}
 
   <!-- Bootstrap core JavaScript -->
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
           crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js" integrity="sha384-7aThvCh9TypR7fIc2HV4O/nFMVCBwyIUKL8XCtKE+8xgCgl/PQGuFsvShjr74PBp" crossorigin="anonymous"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 
   <!-- JavaScript -->
   <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
