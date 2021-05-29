@@ -33,8 +33,16 @@
                 <a href="{% url 'basket:add' product.pk %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
               </div>
             </div>
-            <div class="add-wish">
-                <a href="{% url 'main:bookmark_add' product.pk %}"><i class="fa fa-plus-square"></i> Add to wishlist <i class="bi bi-heart"></i></a>
+            <div class="add-wish-list">
+              {% if user not in product.bookmarks.all %}
+                <a href="{% url 'main:bookmark_add' product.pk %}" id="bookmark" data-id="{{ product.pk }}">
+                  <i class="bi bi-heart icon{{ product.pk }}"></i>
+                </a>
+              {% else %}
+                <a href="{% url 'main:bookmark_add' product.pk %}" id="bookmark" data-id="{{ product.pk }}">
+                  <i class="bi bi-heart-fill icon{{ product.pk }}"></i>
+                </a>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -45,3 +53,8 @@
   </div>
 
 {% endblock %}
+
+
+  {% block JS %}
+    <script src="{% static 'js/bookmarks.js' %}"></script>
+  {% endblock %}

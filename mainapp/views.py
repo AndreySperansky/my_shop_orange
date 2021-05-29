@@ -160,9 +160,9 @@ def add_remove_bookmark(request, pk):
         'res': res
     }
 
-    # return JsonResponse(data, safe=False)
+    return JsonResponse(data, safe=False)
     # return HttpResponseRedirect(reverse('mainapp:index'))
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 @login_required

@@ -1055,28 +1055,34 @@ h2.title {
   color: #FFFFFF;
 }
 
-.add-wish {
+.add-wish-list {
   border-top: 1px solid #F7F7F0;
   text-align:center;
 
 }
 
-.add-wish a {
+.add-wish-list a {
   color: #B3AFA8;
   font-family: 'Roboto', sans-serif;
   font-size: 13px;
 }
 
 
-.add-wish a:hover{
+.add-wish-list a:hover{
 	background:none;
 	color:#FE980F;
 }
 
 
+.add-wish-list .bi-heart-fill{
+	background:none;
+	color:#FE980F;
+}
+
+
+
 .choose {
   border-top: 1px solid #F7F7F0;
-
 }
 
 .choose ul li a {
