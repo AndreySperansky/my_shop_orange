@@ -1,14 +1,18 @@
 # mainapp/views
 
 from random import random
+
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db import transaction
 from django.shortcuts import render
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404
-from django.views.generic import DetailView, View
-from .models import Category, Product
+from django.template.loader import render_to_string
+from django.urls import reverse
+from django.views.generic import DetailView, View, ListView
+from .models import Category, Product, BookmarkProduct
 from basketapp.models import Basket
 from specs.models import ProductFeatures
 from .mixins import BasketMixin, ProductMixin
@@ -132,3 +136,83 @@ class ProductDetailView(BasketMixin, ProductMixin, DetailView):
     # content['same_products'] = same_products
     # content['hot_product'] = hot_product
 
+
+################################################################################################
+#                            Bookmarks Views
+################################################################################################
+
+@login_required
+def add_remove_bookmark(request, pk):
+    user = request.user
+
+    try:
+        bookmark = BookmarkProduct.objects.get(shop_user=user, product=pk)
+        bookmark.delete()
+        res=False
+    except:
+        bookmark = BookmarkProduct.objects.create(
+            shop_user=user,
+            product=Product.objects.get(id=pk))
+        bookmark.save()
+        res=True
+
+    data = {
+        'res': res
+    }
+
+    # return JsonResponse(data, safe=False)
+    # return HttpResponseRedirect(reverse('mainapp:index'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+@login_required
+def bookmark_remove(request, pk):
+    bookmark_record = get_object_or_404(BookmarkProduct, pk=pk)
+    bookmark_record.delete()
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+
+@login_required
+def bookmarks(request):
+    title = 'Favorites'
+    bookmarks = BookmarkProduct.objects.filter(shop_user=request.user)
+    # shop_user - атрибут класса BookmarkProduct (models.py)
+    basket = get_basket(request.user)
+
+    content = {
+        'title': title,
+        'bookmarks': bookmarks,
+        'basket': basket
+    }
+
+    return render(request, 'mainapp/bookmarks.html', content)
+
+
+
+def bookmark_list(request):
+    user = request.user
+    data = dict()
+    if request.method == 'GET':
+        bookmarks = BookmarkProduct.objects.filter(shop_user=user)
+        # shop_user - атрибут класса BookmarkProduct (models.py)
+        data['table'] = render_to_string(
+            'mainapp/includes/inc_bookmark_list.html',
+            {'bookmarks': bookmarks},
+            request=request
+        )
+        return JsonResponse(data)
+
+
+# class BookmarkView(ListView):
+#     model = BookmarkProduct
+#     context_object_name = 'bookmarks'
+#     template_name = "mainapp/bookmarks.html"
+#
+#
+#     def get_queryset(self):
+#         qs = super().get_queryset()
+#         if 'type' in self.request.GET:
+#             qs = qs.filter(bookmark_type=int(self.request.GET['type']))
+#         return qs

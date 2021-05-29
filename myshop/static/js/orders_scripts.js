@@ -57,8 +57,8 @@ window.onload = function () {
 	}
 	
 	
-	$('.order_form select').change(function () {
-		var target = event.target;
+	$('.order_form select').change(function (e) {
+		var target = e.target;
 		orderitem_num = parseInt(target.name.replace('orderitems-', '').replace('-product', ''));
 		var orderitem_product_pk = target.options[target.selectedIndex].value;
 		
@@ -98,9 +98,11 @@ window.onload = function () {
 	}
 	
 	$('.formset_row').formset({
-		addText: 'добавить продукт',
-		deleteText: 'удалить',
 		prefix: 'orderitems',
-		removed: deleteOrderItem
+		addText: 'добавить продукт',
+		deleteText: '<i class="bi bi-trash"></i>',
+		addCssClass: 'btn btn-primary ',          // CSS class applied to the add link
+		deleteCssClass: 'btn btn-warning',    // or hide CSS class applied to the delete link
+		removed: deleteOrderItem,
 	});
 }

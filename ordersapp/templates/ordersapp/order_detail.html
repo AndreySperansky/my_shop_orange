@@ -14,8 +14,11 @@
                 <span class="product_quantitiy"> x {{ item.quantity }} шт.</span>
                 <span class="product_cost"> = {{ item.get_product_cost }}&nbspруб</span>
             </div>
+            <hr>
         {% endfor %}
     </div>
+    <div class="container order-action col-lg-3 float-right">
     {% include 'ordersapp/includes/inc_order_actions.html' %}
+    </div>
 
 {% endblock %}

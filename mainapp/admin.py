@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Product
+from .models import Category, Product, BookmarkProduct
 
 class CategoryAdmin(admin.ModelAdmin):
     # какие поля будут отображаться в админке
@@ -20,6 +20,15 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('name', 'category', 'title',)
 
 
+class BookmarkProductAdmin(admin.ModelAdmin):
+    # какие поля будут отображаться в админке
+    list_display = ('id', 'product', 'shop_user',)
+    # какие поля будут ссылками на соответствующие модели
+    list_display_links = ('id', 'product', 'shop_user',)
+    # какие поля будут участвовать в поиске
+    search_fields = ('product', 'shop_user',)
+
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
+admin.site.register(BookmarkProduct, BookmarkProductAdmin)

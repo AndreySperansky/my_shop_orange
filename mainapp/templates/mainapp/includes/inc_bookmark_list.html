@@ -1,0 +1,45 @@
+<section id="cart_items">
+
+      <div class="table-responsive cart_info">
+        <table class="table table-condensed">
+          <thead>
+          <tr class="cart_menu">
+            <td class="image">Item</td>
+            <td class="description">Description</td>
+            <td class="price">Price</td>
+            <td class="action_add"></td>
+            <td class="action_del"></td>
+          </tr>
+          </thead>
+
+          {% for item in bookmarks %}
+
+            <tbody>
+            <tr>
+              <td class="cart_product">
+                <a href="{{ item.product.get_absolute_url }}"><img src="/media/{{ item.product.image }}" width="150"
+                                                                   alt=""></a>
+              </td>
+              <td class="cart_description">
+                <h4><a href="{{ item.product.get_absolute_url }}">{{ item.product.title }}</a></h4>
+              </td>
+              <td class="cart_price">
+                <p>{{ item.product.price }} руб.</p>
+              </td>
+              <td class="cart_add">
+                <a href="{% url 'basket:add' item.product.pk %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+              </td>
+              <td class="cart_delete">
+                <a class="cart_quantity_delete" href="{% url 'mainapp:bookmark_remove' item.pk %}"><i class="fa fa-times"></i></a>
+              </td>
+            </tr>
+            </tbody>
+
+          {% endfor %}
+
+        </table>
+      </div>
+
+</section> <!--/#bookmarks-->
+
+

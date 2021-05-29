@@ -11,7 +11,7 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item "><a class="nav-link" href="{% url 'mainapp:index' %}"><i class="fa fa-home"></i> Home </a></li>
         <li class="nav-item "><a class="nav-link" href="#"><i class="fa fa-user"></i> Account</a></li>
-        <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-star"></i> Wishlist</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'mainapp:bookmarks' %}"><i class="fa fa-star"></i> Wishlist</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'basketapp:checkout' %}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'basketapp:cart' %}"><i class="fa fa-shopping-cart"></i> Cart
           {% if basket %}
