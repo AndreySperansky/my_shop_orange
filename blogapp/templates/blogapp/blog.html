@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block ads %} {% endblock %}
+
+{% block breadcrumbs %}
+  <div class="breadcrumbs">
+    <ol class="breadcrumb">
+      <li><a href="{% url 'mainapp:index' %}">Home</a></li>
+      <li class="active">Blog</li>
+    </ol>
+  </div>
+{% endblock %}
+
+
+
+<!-- Left Side Bar -->
+{% block side_bar %}
+  {% include "mainapp/includes/inc_side_bar.html" %}
+{% endblock %}
+<!-- /.col-lg-3 -->
+
+<!-- Content -->
+{% block content %}
+  <div class="blog-post-area">
+    <h2 class="title text-center">Latest From our Blog</h2>
+
+    <div class="row">
+      <div class="single-blog-post">
+        {% for item in posts %}
+          <div class="post-meta">
+            <ul>
+              <li><i class="bi bi-person-fill"></i> Mac Doe</li>
+              <li><i class="bi bi-clock"></i> 1:33 pm</li>
+              <li><i class="bi bi-calendar-event"></i> {{ item.created_at|date:"Y-m-d" }} </li>
+            </ul>
+            <span>
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+            </span>
+          </div>
+{#          <h3 class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.title }}</h3>#}
+          <div class="card mb-3">
+
+            <div class="card-body  text-muted">
+              <div class="media">
+                {% if item.photo %}
+                  <img src="{{ item.photo.url }}" alt="" width="350" class="mr-3">
+                {% else %}
+                  <img src="https://picsum.photos/id/866/picsum/350/263" alt="">
+                {% endif %}
+                <div class="media-body">
+                  <h5 class="card-title {% cycle 'h5' 'text-success' %}">{{ item.title }}</h5>
+                  <p class="card-text text-muted">{{ item.content|linebreaks|truncatewords:50 }}</p>
+                  <a href="{% url 'blog:post' pk=item.pk %}" class="btn btn-primary">Read more...</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="pagination-area">
+      <ul class="pagination">
+        <li><a href="" class="active">1</a></li>
+        <li><a href="">2</a></li>
+        <li><a href="">3</a></li>
+        <li><a href=""><i class="fa fa-angle-double-right"></i></a></li>
+      </ul>
+    </div>
+  </div>
+
+
+{% endblock %}
+
+{% block JS %} {% endblock %}

@@ -1658,7 +1658,7 @@ h2.title {
   padding: 3px 7px;
 }
 
-.breadcrumbs .breadcrumb li a:after {
+.breadcrumbs .breadcrumb li:after {
   content:"";
   height:auto;
   width: auto;
@@ -1668,8 +1668,20 @@ h2.title {
   position: absolute;
   top: 15px;
   left:55px;
-
 }
+
+.breadcrumbs .breadcrumb > li + li a:after {
+  content:"";
+  height:auto;
+  width: auto;
+  border-width: 8px;
+  border-style: solid;
+  border-color:transparent transparent transparent #FE980F;
+  position: absolute;
+  top: 15px;
+  left:108px;
+}
+
 
 .breadcrumbs .breadcrumb > li + li:before {
   content: "   ";
@@ -2220,25 +2232,32 @@ h2.title {
 .post-meta ul li {
   background:#F0F0E9;
   float: left;
+  width: 110px;
   margin-right: 10px;
-  padding: 0 5px;
+
+  padding: 3px 5px;
   font-size: 11px;
   color: #393b3b;
   position: relative;
+  vertical-align: -3px;
 }
 
-.blog-post-area
-.post-meta ul li i {
+.blog-post-area .post-meta ul li i {
   background:#FE980F;
   color: #FFFFFF;
-  margin-left: -4px;
+  margin-left: -6px;
+  margin-top: 4px;
   margin-right: 7px;
-  padding: 4px 7px;
+  padding: 5px 7px;
+  vertical-align: -3px;
+}
+
+.bi::before {
+   /*vertical-align: -2px;*/
 }
 
 .sinlge-post-meta li i:after,
-.blog-post-area
-.post-meta ul li i:after {
+.blog-post-area .post-meta ul li i:after {
   content: "";
   position: absolute;
   width: auto;
@@ -2246,7 +2265,7 @@ h2.title {
   border-color:transparent transparent transparent #FE980F;
   border-width:4px;
   border-style: solid;
-  top:6px;
+  top:10px;
   left:24px
 }
 

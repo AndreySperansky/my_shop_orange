@@ -9,17 +9,41 @@
 
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item "><a class="nav-link" href="{% url 'mainapp:index' %}"><i class="fa fa-home"></i> Home </a></li>
-        <li class="nav-item "><a class="nav-link" href="#"><i class="bi bi-vector-pen"></i> Blog</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'mainapp:bookmarks' %}"><i class="bi bi-heart"></i> Wishlist</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'basketapp:checkout' %}"><i class="bi bi-bag-check"></i> Checkout</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'basketapp:cart' %}"><i class="fa fa-shopping-cart"></i> Cart
-          {% if basket %}
-            <span class="badge badge-pill badge-danger">
-              {{ basket|length }} / ({{ basket.0.total_quantity }} шт) / {{ basket.0.total_cost|floatformat:0 }} руб.
-            </span>
-          {% endif %}
-        </a>
+        <li class="nav-item ">
+          <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}" href="{% url 'mainapp:index' %}">
+            <i class="fa fa-home"></i>
+            Home
+          </a>
+        </li>
+        <li class="nav-item ">
+{#        <a class="nav-link {% if request.resolver_match.url_name == 'main' %}active{% endif %}" href="{% url 'blog:main' %}">#}
+          <a class="nav-link {% if request.resolver_match.namespace == 'blog' %}active{% endif %}" href="{% url 'blog:main' %}">
+            <i class="bi bi-vector-pen"></i>
+            Blog
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'bookmarks' %}active{% endif %}" href="{% url 'mainapp:bookmarks' %}">
+          <i class="bi bi-heart"></i>
+            Wishlist
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'checkout' %}active{% endif %}" href="{% url 'basketapp:checkout' %}">
+            <i class="bi bi-bag-check"></i>
+            Checkout
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'cart' %}active{% endif %}" href="{% url 'basketapp:cart' %}">
+            <i class="fa fa-shopping-cart"></i>
+            Cart
+            {% if basket %}
+              <span class="badge badge-pill badge-danger">
+                {{ basket|length }} / ({{ basket.0.total_quantity }} шт) / {{ basket.0.total_cost|floatformat:0 }} руб.
+              </span>
+            {% endif %}
+          </a>
         </li>
 {#        <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-lock"></i> Login</a></li>#}
 

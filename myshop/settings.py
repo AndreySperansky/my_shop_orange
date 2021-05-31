@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'authapp.apps.AuthappConfig',
     'basketapp.apps.BasketappConfig',
     'specs.apps.SpecsConfig',
-    'ordersapp.apps.OrdersappConfig'
+    'ordersapp.apps.OrdersappConfig',
+    'blogapp.apps.BlogappConfig',
 ]
 
 MIDDLEWARE = [
@@ -141,6 +142,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 AUTH_USER_MODEL = 'authapp.ShopUser'
+
+
 
 # STATICFILES_FINDERS = [
 #     # searches in STATICFILES_DIRS
