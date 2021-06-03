@@ -234,8 +234,7 @@ a#scrollUp i{
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   font-weight: 300;
-  padding:0;
-  padding-right: 0;
+  padding: 0;
   margin-top: 10px;
 }
 
@@ -267,7 +266,7 @@ a#scrollUp i{
 }
 
 .mainmenu ul li:first-child{
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 .mainmenu ul li a {
@@ -848,7 +847,7 @@ h2.title:before{
   font-size: 14px;
   padding: 5px 25px;
   text-decoration: none;
-  /*text-transform: uppercase;*/
+  text-transform: uppercase;
 }
 
 .brands-name  p a:hover{
@@ -913,8 +912,8 @@ h2.title:before{
 }
 
 .features-items{
-	overflow:hidden;
-    margin-top: 0;
+  overflow:hidden;
+  margin-top: 0;
 }
 
 
@@ -942,7 +941,7 @@ h2.title {
 .new, .sale {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 15px;
 }
 
 .productinfo h2{
@@ -1114,8 +1113,8 @@ h2.title {
 }
 
 
-.category-tab ul li a {
-  border: 0 none;
+.category-tab  a {
+  border: 0;
   border-radius: 0;
   color: #B3AFA8;
   display: block;
@@ -1124,29 +1123,36 @@ h2.title {
   text-transform: uppercase;
 }
 
-.category-tab ul  li  a:hover{
+.category-tab   a:hover{
 	background:#FE980F;
 	color:#fff;
+    border:0;
+}
+div .nav.nav-tabs {
+  background: #393b3b;
+  margin-bottom: 30px;
+  border: 0;
 }
 
-.nav-tabs  li.active  a, .nav-tabs  li.active  a:hover, .nav-tabs  li.active  a:focus {
+.nav-tabs  a.active,  .nav-tabs a:hover, .nav-tabs a.active, .nav-tabs a:focus {
   -moz-border-bottom-colors: none;
   -moz-border-left-colors: none;
   -moz-border-right-colors: none;
   -moz-border-top-colors: none;
   background-color: #FE980F;
-  border:0px;
+  border-radius: 0;
+  border:0;
   color: #FFFFFF;
   cursor: default;
   margin-right:0;
   margin-left:0;
+
 }
 
-.nav-tabs  li  a {
-  border: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 4px 4px 0 0;
-  line-height: 1.42857;
-  margin-right:0;
+.nav-tabs    a {
+  line-height: 2.5;
+  margin-right: 0;
+  padding: 0 15px;
 }
 
 .recommended_items {
@@ -1286,7 +1292,7 @@ h2.title {
   width: 100%;
 }
 
-.view-product h3 {
+.view-product .btn.btn-default {
   background: #FE980F;
   bottom: 0;
   color: #FFFFFF;
@@ -1364,33 +1370,34 @@ h2.title {
   margin-top: 18px;
 }
 
-.product-information span span {
+.product-information div span {
   color: #FE980F;
   float: left;
   font-family: 'Roboto', sans-serif;
   font-size: 30px;
   font-weight: 700;
   margin-right: 20px;
-  margin-top: 0px;
-}
-.product-information span input {
-  border: 1px solid #DEDEDC;
-  color: #696763;
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  height: 33px;
-  outline: medium none;
-  text-align: center;
-  width: 50px;
-}
+  margin-top: 15px;
 
-.product-information span label {
-  color: #696763;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 700;
-  margin-right: 5px;
 }
+/*.product-information span input {*/
+/*  border: 1px solid #DEDEDC;*/
+/*  color: #696763;*/
+/*  font-family: 'Roboto', sans-serif;*/
+/*  font-size: 16px;*/
+/*  font-weight: 700;*/
+/*  height: 33px;*/
+/*  outline: medium none;*/
+/*  text-align: center;*/
+/*  width: 50px;*/
+/*}*/
+
+/*.product-information span label {*/
+/*  color: #696763;*/
+/*  font-family: 'Roboto', sans-serif;*/
+/*  font-weight: 700;*/
+/*  margin-right: 5px;*/
+/*}*/
 
 .share {
   margin-top: 15px;
@@ -1412,8 +1419,8 @@ h2.title {
 .shop-details-tab {
   border: 1px solid #F7F7F0;
   margin-bottom: 75px;
-  margin-left: 15px;
-  margin-right: 15px;
+  /*margin-left: 15px;*/
+  /*margin-right: 15px;*/
   padding-bottom: 10px;
 }
 .shop-details-tab .col-sm-12 {
@@ -1931,7 +1938,8 @@ h2.title {
 }
 
 .check_out {
-  margin-left: 20px
+  margin-left: 20px;
+  margin-bottom: 30px;
 }
 
 
@@ -2055,6 +2063,7 @@ h2.title {
 
 .btn-primary a {
   color: #FFFFFF;
+  margin-top: 0;
 }
 
 .btn-default {
@@ -2296,12 +2305,13 @@ h2.title {
 
 
 .pagination-area {
-  margin-bottom:45px;
-  margin-top:45px
+  margin-bottom: 15px;
+  margin-top:5px;
+  display: flex;
+  flex-direction: column;
 }
 
-.pagination-area
-.pagination li a {
+.pagination-area .pagination li a {
   background:#F0F0E9;
   border: 0 none;
   border-radius: 0;
@@ -2448,6 +2458,14 @@ h2.title {
   margin-top: 0;
 }
 
+a.btn.btn-primary{
+  margin-top: 0;
+}
+
+a.btn.btn-primary.cart{
+  margin-top: 15px;
+}
+
 .blog-socials ul li {
 
   float: left;
@@ -2510,6 +2528,9 @@ h2.title {
   width: 95%;
 }
 
+.post {
+  margin-bottom: 45px;
+}
 
 .sinlge-post-meta {
   overflow: hidden;

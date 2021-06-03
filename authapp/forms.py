@@ -2,8 +2,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import UserChangeForm
-from bootstrap_modal_forms.mixins import PopRequestMixin, CreateUpdateAjaxMixin
-from bootstrap_modal_forms.forms import BSModalModelForm, BSModalForm
+
 
 from .models import ShopUser
 
@@ -69,7 +68,7 @@ class CustomAuthenticationForm(AuthenticationForm):
 
 
 
-class CustomUserCreationForm(PopRequestMixin, CreateUpdateAjaxMixin, UserCreationForm):
+class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = ShopUser
         fields = ['username', 'password1', 'password2']

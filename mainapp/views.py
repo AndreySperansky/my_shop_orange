@@ -126,6 +126,8 @@ class ProductDetailView(BasketMixin, ProductMixin, DetailView):
         return context
 
 
+
+
 # *******************************************************************************************
 
 
@@ -148,16 +150,18 @@ def add_remove_bookmark(request, pk):
     try:
         bookmark = BookmarkProduct.objects.get(shop_user=user, product=pk)
         bookmark.delete()
-        res=False
+        res='false'
+        # messages.add_message(request, messages.INFO, "Item Removed From Favorites")
     except:
         bookmark = BookmarkProduct.objects.create(
             shop_user=user,
             product=Product.objects.get(id=pk))
         bookmark.save()
-        res=True
+        res='true'
+        # messages.add_message(request, messages.INFO, "Item Added To Favorites")
 
     data = {
-        'res': res
+        'res': res,
     }
 
     return JsonResponse(data, safe=False)
@@ -216,3 +220,5 @@ def bookmark_list(request):
 #         if 'type' in self.request.GET:
 #             qs = qs.filter(bookmark_type=int(self.request.GET['type']))
 #         return qs
+
+

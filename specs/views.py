@@ -47,7 +47,7 @@ class CreateNewCategory(View):
             new_category = form.save(commit=False)
             new_category.name = form.cleaned_data['name']
             new_category.save()
-        return HttpResponseRedirect('/product-specs/')
+        return HttpResponseRedirect('specs:product-specs')
 
 
 class CreateNewFeatureValidator(View):

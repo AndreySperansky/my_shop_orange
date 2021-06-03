@@ -9,7 +9,7 @@
     <ol class="breadcrumb">
       <li><a href="{% url 'mainapp:index' %}">Home</a></li>
       <li><a href="{% url 'blog:main' %}">Blog</a></li>
-      <li class="active">Blog Post</li>
+      <li class="active">Blog Post #{{ item.pk }}</li>
     </ol>
   </div>
 {% endblock %}
@@ -25,7 +25,7 @@
 <!-- Content -->
 {% block content %}
   <div class="blog-post-area">
-    <h2 class="title text-center">Blog Post</h2>
+    <h2 class="title text-center">Blog Post #{{ item.pk }}</h2>
 
     <div class="single-blog-post">
 

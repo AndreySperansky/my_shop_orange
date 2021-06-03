@@ -3,7 +3,16 @@ div.
   <h2 class="heading">Step1</h2>
 </div>
 <div class="checkout-options">
-  <h3>New User</h3>
+
+    <div class="h2  head">
+      Checkout:
+      {% if user.first_name %}
+        {{ user.first_name|title}}
+      {% else %}
+        {{ user.username|title}}
+      {% endif %}
+    </div>
+
   <p>Checkout options</p>
   <ul class="nav">
     <li>
@@ -34,7 +43,7 @@ div.
           <input type="password" placeholder="Confirm password">
         </form>
         <a class="btn btn-primary" href="">Get Quotes</a>
-        <a class="btn btn-primary" href="">Continue</a>
+        <a class="btn btn-primary" href="{% url 'order:order_create' %}">Continue</a>
       </div>
     </div>
     <div class="col-sm-5 clearfix">

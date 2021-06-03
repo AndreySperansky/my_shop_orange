@@ -35,13 +35,27 @@ $(document).ready(function(){
 			success: function(response) {
 				console.log('success', response)
 				let res = response['res'];
+
 				console.log(res)
 				if(res === 'false') {
 					$(`.icon${id}`).toggleClass('bi-heart bi-heart-fill')
+					$(`.messages`).append([
+						'<div class="alert alert-success alert-dismissible fade show mt-3" role="alert">',
+      			'<strong>Item Was Deleted From Favorits</strong>',
+      			'<button type="button" class="close" data-dismiss="alert" aria-label="Close">',
+        		'<span aria-hidden="true">&times;</span>',
+      			'</button>',
+						'</div>'].join(''))
 
 				} else {
 					$(`.icon${id}`).toggleClass('bi-heart-fill bi-heart')
-
+					$(`.messages`).append(
+						['<div class="alert alert-success alert-dismissible fade show mt-3" role="alert"> ',
+						'	<strong>Item Was Added To Favorits</strong> ',
+						'<button type="button" class="close" data-dismiss="alert" aria-label="Close">',
+						'<span aria-hidden="true">&times;</span>',
+						'</button> </div>',
+						].join(''))
 				}
 
 			},

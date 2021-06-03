@@ -3,6 +3,8 @@
 
 {% block title %} {{ title|title }} {% endblock %}
 
+
+
 <!-- Left Side Bar -->
 {% block side_bar %}
   {% include "mainapp/includes/inc_side_bar.html" %}
@@ -13,14 +15,16 @@
 
 {% block content %}
 
+  {% include 'mainapp/includes/inc_modal.html' %}
+
   <div class="product-details"><!--product-description-->
     <div class="row">
-
 
       <div class="col-lg-5">
         <div class="view-product">
           <img src="{{ product.image.url }}" alt=""/>
-          <h3>ZOOM</h3>
+{#          <h3>ZOOM</h3>#}
+          <button  type="button" class="btn btn-default float-right" data-toggle="modal" data-target="#exampleModal-{{ product.id }}">ZOOM</button>
         </div>
 
         <!--  carousel -->
@@ -57,18 +61,21 @@
         <h2>{{ product.title }}</h2>
         <p>Web ID: 1089772</p>
         <img src="{% static 'img/rating.png' %}" alt=""/>
-        <span>
-									<span>{{ product.price }} руб.</span>
-									<label>Qty:</label>
-									<input type="text" value="3"/>
-									<button type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button>
-								</span>
-        <p><b>Availability:</b> {{ product.quantity }} In Stock</p>
-        <p><b>Condition:</b> New</p>
-        <p><b>Brand:</b> E-SHOPPER</p>
+        <div>
+          <span>{{ product.price }} руб.</span>
+
+          <a href="{% url 'basket:add' product.pk %}" type="button" class="btn btn-primary cart">
+            <i class="fa fa-shopping-cart"></i>
+            Add to cart
+          </a>
+        </div><br>
+
+        <div>
+          <p><b>Availability:</b> {{ product.quantity }} In Stock</p>
+          <p><b>Condition:</b> New</p>
+          <p><b>Brand:</b> "BRAND-NEW"</p>
+        </div>
+
         <a href=""><img src="{% static 'img/share.png' %}" class="share img-responsive" alt=""/></a>
       </div><!--/product-information-->
     </div>
@@ -91,6 +98,6 @@
     </table>
   </div>
 
-
+  {% include "mainapp/includes/inc_product_tabs.html" %}
 
 {% endblock %}

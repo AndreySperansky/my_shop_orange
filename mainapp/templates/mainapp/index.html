@@ -6,9 +6,11 @@
   {% include "mainapp/includes/inc_carousel.html" %}
 {% endblock %}
 
+{% block messages %}
+  {% include 'includes/inc_message.html' %}
+{% endblock %}
 
-
-  <!-- Left Side Bar -->
+<!-- Left Side Bar -->
 {% block side_bar %}
   {% include "mainapp/includes/inc_side_bar.html" %}
 {% endblock %}
@@ -22,7 +24,7 @@
     <div class="row">
 
       {% for product in products %}
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="col-lg-4 col-md-6 mb-1">
           <div class="product-image-wrapper">
             <div class="single-products">
               <div class="productinfo text-center">
@@ -33,6 +35,14 @@
                 <a href="{% url 'basket:add' product.pk %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
               </div>
             </div>
+
+            {% if product.is_new == True %}
+              <img src="{% static 'img/new.png' %}" class="new" alt="" />
+            {% endif %}
+            {% if product.is_sale == True %}
+              <img src="{% static 'img/sale.png' %}" class="new" alt="" />
+            {% endif %}
+
             <div class="add-wish-list">
               {% if user not in product.bookmarks.all %}
                 <a href="{% url 'main:bookmark_add' product.pk %}" id="bookmark" data-id="{{ product.pk }}">
@@ -50,6 +60,14 @@
 
     </div>
     <!-- /.row -->
+    <div class="pagination-area">
+      <ul class="pagination justify-content-end">
+        <li class="page-item"><a href="" class="active">1</a></li>
+        <li class="page-item"><a href="">2</a></li>
+        <li class="page-item"><a href="">3</a></li>
+        <li class="page-item"><a href=""><i class="fa fa-angle-double-right"></i></a></li>
+      </ul>
+    </div>
   </div>
 
 {% endblock %}

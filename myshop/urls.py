@@ -11,7 +11,7 @@ urlpatterns = [
     path('auth/', include('authapp.urls', namespace='auth')),
     path('basket/', include('basketapp.urls', namespace='basket')),
     path('order/', include('ordersapp.urls', namespace='order')),
-    path('specs/', include('specs.urls', namespace='specs')),
+    path('product-specs/', include('specs.urls', namespace='specs')),
     path('blog/', include('blogapp.urls', namespace='blog')),
 ]
 

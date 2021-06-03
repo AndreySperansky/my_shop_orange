@@ -36,13 +36,13 @@
               <li><i class="bi bi-calendar-event"></i> {{ item.created_at|date:"Y-m-d" }} </li>
             </ul>
             <span>
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <img src="{% static 'img/rating.png' %}" alt="rating">
             </span>
           </div>
 {#          <h3 class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.title }}</h3>#}
-          <div class="card mb-3">
+          <div class="card mb-lg-5 post">
 
-            <div class="card-body  text-muted">
+            <div class="card-body text-muted">
               <div class="media">
                 {% if item.photo %}
                   <img src="{{ item.photo.url }}" alt="" width="350" class="mr-3">
@@ -62,11 +62,11 @@
     </div>
 
     <div class="pagination-area">
-      <ul class="pagination">
-        <li><a href="" class="active">1</a></li>
-        <li><a href="">2</a></li>
-        <li><a href="">3</a></li>
-        <li><a href=""><i class="fa fa-angle-double-right"></i></a></li>
+      <ul class="pagination justify-content-end">
+        <li class="page-item"><a href="" class="active">1</a></li>
+        <li class="page-item"><a href="">2</a></li>
+        <li class="page-item"><a href="">3</a></li>
+        <li class="page-item"><a href=""><i class="fa fa-angle-double-right"></i></a></li>
       </ul>
     </div>
   </div>
