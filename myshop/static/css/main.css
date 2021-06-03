@@ -499,7 +499,7 @@ ul.sub-menu {
   font-size: 12px;
   font-weight: 300;
   text-transform:uppercase;
-  margin-top:0px;
+  margin-top:0;
 }
 
 
@@ -840,7 +840,7 @@ h2.title:before{
 }
 
 
-.brands-name  p a {
+.brands-name p a {
   background-color: #FFFFFF;
   color: #696763;
   font-family: 'Roboto', sans-serif;
@@ -855,9 +855,10 @@ h2.title:before{
   color: #FE980F;
 }
 
-.brands-name  p a:active {
-  background-color: #fff;
-  color: #FE980F;
+.brands-name  p a.active {
+  background-color: #fff ;
+  font-weight: bold;
+  color: #FE980F !important;
 }
 
 .brands-name  p {
@@ -2057,9 +2058,14 @@ div .nav.nav-tabs {
   color: #FFFFFF;
   border: 0 none;
   border-radius: 0;
+
+}
+
+.order-action .btn.btn-primary {
   margin-right: 15px;
   margin-top: 20px;
 }
+
 
 .btn-primary a {
   color: #FFFFFF;
@@ -2622,7 +2628,6 @@ a.btn.btn-primary.cart{
   background:#FE980F;
   border: 0 none;
   border-radius: 0;
-  margin-top: 16px;
 }
 
 .blank-arrow {

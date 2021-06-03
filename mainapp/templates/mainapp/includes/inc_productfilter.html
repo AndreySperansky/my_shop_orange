@@ -1,14 +1,21 @@
 {% load search_filter %}
+{% load static %}
 
-<form class="d-flex mt-3" action="{% url 'mainapp:category_detail' slug=category.slug %}" method="GET">
-  <input class="form-control me-2" name="search" type="search" placeholder="Поиск товара" aria-label="Search">
-  <button class="btn btn-outline-success" type="submit">Поиск</button>
+<form class="d-flex mt-3 d-flex justify-content-center" action="{% url 'mainapp:category_detail' slug=category.slug %}" method="GET">
+{#  <input class="search_box" name="search" type="search" placeholder="Поиск товара" aria-label="Search">#}
+  <div class="search_box ">
+    <input name="search" type="search" placeholder="Поиск товара" aria-label="Search">
+  </div>
+  <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i>
+
+  </button>
 </form>
 <hr>
 <form action="{% url 'mainapp:category_detail' slug=category.slug %}" method="GET">
   {{ category|product_spec }}
   <p class="text-center">
-    <button class="btn btn-outline-success" type="submit">Поиск</button>
-    <button class="btn btn-outline-info" type="submit">Сбросить</button>
+    <button class="btn btn-default" type="submit">Поиск</button>
+    <button class="btn btn-default" type="submit">Сбросить</button>
   </p>
 </form>
+

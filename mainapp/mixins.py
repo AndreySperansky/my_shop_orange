@@ -20,6 +20,13 @@ class BasketMixin(View):
         return super().dispatch(request, *args, **kwargs)
 
 
+class CategoryMixin(View):
+
+    def dispatch(self, request, *args, **kwargs):
+        current_page = request.resolver_match.kwargs['slug']
+
+        self.current_page = current_page
+        return super().dispatch(request, *args, **kwargs)
 
 
 

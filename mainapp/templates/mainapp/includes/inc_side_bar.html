@@ -5,29 +5,33 @@
 
   <h2>Category</h2>
   <div class="panel-group category-products"><!--category-products-->
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        {% for category in categories %}
-          <h4 class="panel-title">
-            <a href="{{ category.get_absolute_url }}">{{ category.name }}
-              <span class="float-right">({{ category.product_set.count }})</span>
-            </a>
-          </h4>
-        {% endfor %}
-      </div>
+    <div class="panel panel-default brands-name">
+      {% for category in categories %}
+        <p>
+          <a href="{{ category.get_absolute_url }}"
+             class="{% if current_page == category.slug %}active{% endif %}">{{ category.name }}
+            <span class="float-right">({{ category.product_set.count }})</span>
+          </a>
+        </p>
+      {% endfor %}
     </div>
   </div><!--/category-products-->
 
-  <div class="brands_products"><!--brands_products-->
-    <h2>Brands</h2>
-    <div class="">
-      <div class="brands-name">
-        <p><a href="#"><span class="float-right">(27)</span>Albiro </a></p>
-        <p><a href="#"><span class="float-right">(32)</span>Ronhill </a></p>
-        <p><a href="#"> <span class="float-right">(5)</span>Oddmolly</a></p>
-        <p><a href="#"> <span class="float-right">(9)</span>Boudestijn</a></p>
-      </div>
+
+  <h2>Category</h2>
+  <div class="panel-group category-products"><!--category-products-->
+    <div class="panel panel-default brands-name">
+      {% for category in categories %}
+        <p>
+          <a href="{{ category.get_absolute_url }}">{{ category.name }}
+            <span class="float-right">({{ category.product_set.count }})</span>
+          </a>
+        </p>
+      {% endfor %}
     </div>
-  </div><!--/brands_products-->
+  </div><!--/category-products-->
+
+
+
 
 </div><!--/Left_sidebar-->

@@ -15,7 +15,7 @@ from django.views.generic import DetailView, View, ListView
 from .models import Category, Product, BookmarkProduct
 from basketapp.models import Basket
 from specs.models import ProductFeatures
-from .mixins import BasketMixin, ProductMixin
+from .mixins import BasketMixin, ProductMixin, CategoryMixin
 
 
 
@@ -64,7 +64,7 @@ class MainView(BasketMixin, View):
 
 # ***********************************************************************************************
 
-class CategoryDetailView(BasketMixin, DetailView):
+class CategoryDetailView(BasketMixin, CategoryMixin, DetailView):
 
     model = Category
     queryset = Category.objects.all()
@@ -77,6 +77,7 @@ class CategoryDetailView(BasketMixin, DetailView):
         category = self.get_object()
         context['basket'] = self.basket
         context['categories'] = self.model.objects.all()
+        context['current_page'] = self.current_page
 
         # сортировка по котегориям
         if not query and not self.request.GET:
@@ -105,6 +106,7 @@ class CategoryDetailView(BasketMixin, DetailView):
         ).prefetch_related('product', 'feature').values('product_id')
         products = Product.objects.filter(id__in=[pf_['product_id'] for pf_ in pf])
         context['category_products'] = products
+
         return context
 
 
