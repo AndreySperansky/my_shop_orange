@@ -12,7 +12,7 @@ from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.views.generic import DetailView, View, ListView
-from .models import Category, Product, BookmarkProduct
+from .models import Category, Product, Brand, BookmarkProduct
 from basketapp.models import Basket
 from specs.models import ProductFeatures
 from .mixins import BasketMixin, ProductMixin, CategoryMixin
@@ -48,18 +48,58 @@ def get_same_products(hot_product):
 # ***********************************************************************************************
 
 class MainView(BasketMixin, View):
-
+    #
     def get(self, request, *args, **kwargs):
+
+        search_query = request.GET.get('search','')
+        # в качестве ключа словоря GET объекта request используем параметр name="search" поля input
         categories = Category.objects.all()
-        products = Product.objects.all()[:6]
+        brands = Brand.objects.all()
         basket = self.basket
+
+        if search_query:
+            products = Product.objects.filter(title__icontains=search_query)[:6]
+            # (i) в icontains означает регистронезависимый поиск
+        else:
+            products = Product.objects.all()[:6]
+
+
         context = {
             'categories': categories,
+            'brands': brands,
             'products': products,
             'basket': basket,
-            'title': 'Home'
+            'title': 'Home',
         }
+
         return render(request, 'mainapp/index.html', context)
+
+
+class BrandView(BasketMixin, View):
+    #
+    def get(self,  request, pk=None, *args, **kwargs):
+        search_query = request.GET.get('search', '')
+        brand = get_object_or_404(Brand, pk = pk)
+        if search_query:
+            products = Product.objects.filter(brand__pk = pk, title__icontains=search_query, is_active=True).order_by('price')
+        else:
+            products = Product.objects.filter(brand__pk = pk, is_active=True).order_by('price')
+
+        categories = Category.objects.all()
+        brands = Brand.objects.all()
+        basket = self.basket
+        context = {
+            'brand': brand,
+            'products': products,
+            'categories': categories,
+            'brands': brands,
+            'basket': basket,
+            'title': 'Brands',
+        }
+
+        return render(request, 'mainapp/brands.html', context)
+
+
 
 
 # ***********************************************************************************************
@@ -76,8 +116,10 @@ class CategoryDetailView(BasketMixin, CategoryMixin, DetailView):
         query = self.request.GET.get('search')
         category = self.get_object()
         context['basket'] = self.basket
+        context['brands'] = Brand.objects.all()
         context['categories'] = self.model.objects.all()
         context['current_page'] = self.current_page
+        context['title'] = 'Категории'
 
         # сортировка по котегориям
         if not query and not self.request.GET:
@@ -119,8 +161,10 @@ class ProductDetailView(BasketMixin, ProductMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        brands = Brand.objects.all()
         # context['hot_product'] = get_hot_product()
         # context['same_products'] = self.same_products
+        context['brands'] = brands
         context['categories'] = self.get_object().category.__class__.objects.all()
         context['products'] = self.products
         context['basket'] = self.basket

@@ -18,13 +18,14 @@
   </div><!--/category-products-->
 
 
-  <h2>Category</h2>
+  <h2>Brands</h2>
   <div class="panel-group category-products"><!--category-products-->
     <div class="panel panel-default brands-name">
-      {% for category in categories %}
+      {% for brand in brands %}
         <p>
-          <a href="{{ category.get_absolute_url }}">{{ category.name }}
-            <span class="float-right">({{ category.product_set.count }})</span>
+          <a href="{% url 'main:brand_detail' brand.pk %}" class="{% if request.resolver_match.kwargs.pk|add:'0' == brand.pk %}
+                  active {% endif %}">{{ brand.name }}
+            <span class="float-right">({{ brand.product_set.count }})</span>
           </a>
         </p>
       {% endfor %}

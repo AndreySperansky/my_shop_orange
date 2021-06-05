@@ -1,7 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} {{ title|title }} {% endblock %}
+{% block title %} {{ title|title }}|{{ product.title }}  {% endblock %}
+
+
+
+{% block breadcrumbs %}
+  <div class="breadcrumbs">
+    <ol class="breadcrumb">
+      <li><a href="{% url 'mainapp:index' %}">Home</a></li>
+      <li><a href="{% url 'mainapp:index' %}">{{ category.slug }}</a></li>
+      <li class="active">{{ product.title }}</li>
+    </ol>
+  </div>
+{% endblock %}
 
 
 

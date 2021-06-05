@@ -2,15 +2,14 @@
 {% load static %}
 
 <form class="d-flex mt-3 d-flex justify-content-center" action="{% url 'mainapp:category_detail' slug=category.slug %}" method="GET">
-{#  <input class="search_box" name="search" type="search" placeholder="Поиск товара" aria-label="Search">#}
   <div class="search_box ">
     <input name="search" type="search" placeholder="Поиск товара" aria-label="Search">
   </div>
-  <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i>
-
+  <button class="btn btn-primary" type="submit">
+    <i class="bi bi-search"></i>
   </button>
-</form>
-<hr>
+</form><hr>
+
 <form action="{% url 'mainapp:category_detail' slug=category.slug %}" method="GET">
   {{ category|product_spec }}
   <p class="text-center">

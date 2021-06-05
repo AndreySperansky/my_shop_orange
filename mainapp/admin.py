@@ -1,12 +1,21 @@
 from django.contrib import admin
 
-from .models import Category, Product, BookmarkProduct
+from .models import Category, Product, Brand, BookmarkProduct
 
 class CategoryAdmin(admin.ModelAdmin):
     # какие поля будут отображаться в админке
     list_display = ('id', 'name', 'slug',)
     # какие поля будут ссылками на соответствующие модели
     list_display_links = ('id', 'name', 'slug',)
+    # какие поля будут участвовать в поиске
+    search_fields = ('name',)
+
+
+class BrandAdmin(admin.ModelAdmin):
+    # какие поля будут отображаться в админке
+    list_display = ('id', 'name',)
+    # какие поля будут ссылками на соответствующие модели
+    list_display_links = ('id', 'name',)
     # какие поля будут участвовать в поиске
     search_fields = ('name',)
 
@@ -32,5 +41,6 @@ class BookmarkProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Brand, BrandAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(BookmarkProduct, BookmarkProductAdmin)

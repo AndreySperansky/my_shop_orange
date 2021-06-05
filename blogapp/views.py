@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from mainapp.mixins import BasketMixin
 from .models import Posts
 from basketapp.models import Basket
-from mainapp.models import Category
+from mainapp.models import Category, Brand
 
 from django.views.generic import ListView, DetailView, CreateView
 
@@ -24,6 +24,7 @@ def main(request):
         'posts': posts,
         'basket': basket,
         'categories': Category.objects.all(),
+        'brands': Brand.objects.all(),
         'title': 'Blog',
     }
     # ключи из словарей затем используются в качестве переменных в шаблонах
@@ -40,6 +41,7 @@ class ViewPost(BasketMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['basket'] = self.basket
+        context['brands'] = Brand.objects.all()
         context['categories'] = Category.objects.all()
 
         return context

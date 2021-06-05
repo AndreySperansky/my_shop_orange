@@ -1,17 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} {{ title|title }} {% endblock %}
+{% block title %} {{ title|title }}|{{ brand.slug }} {% endblock %}
 
 
 {% block ads %}
-  {% include "mainapp/includes/inc_carousel.html" %}
+  <section id="advertisement">
+    <div class="container">
+      <img src="{% static 'img/advertisement.jpg' %}" alt=""/>
+    </div>
+</section>
 {% endblock %}
 
 {% block breadcrumbs %}
   <div class="breadcrumbs">
     <ol class="breadcrumb">
       <li><a href="{% url 'mainapp:index' %}">Home</a></li>
+      <li class="active">brands:{{ brand.slug }}</li>
     </ol>
   </div>
 {% endblock %}
@@ -23,6 +28,7 @@
 <!-- Left Side Bar -->
 {% block side_bar %}
   {% include "mainapp/includes/inc_side_bar.html" %}
+
   <form class="d-flex mt-3 d-flex justify-content-center" action="{% url 'mainapp:index' %}" method="GET">
     <div class="search_box ">
       <input name="search" type="search" placeholder="Поиск товара" aria-label="Search">
@@ -35,7 +41,6 @@
   <div class="d-flex mt-3 d-flex justify-content-center">
     <a href="{% url 'mainapp:index' %}" class="btn btn-default" type="submit">Очистить</a>
   </div>
-
 {% endblock %}
 <!-- /.col-lg-3 -->
 
@@ -43,7 +48,7 @@
 {% block content %}
 
   <div class="features-items">
-    <h2 class="title text-center">ALL Items</h2>
+    <h2 class="title text-center">{{ brand.name }}</h2>
     <div class="row">
 
       {% for product in products %}
@@ -51,9 +56,9 @@
           <div class="product-image-wrapper">
             <div class="single-products">
               <div class="productinfo text-center">
-                <a href="{{ product.get_absolute_url }}"><img class="card-img-top" src="{{ product.image.url }}" alt=""></a>
+                <a href="{% url 'main:brand_detail' product.pk %}"><img class="card-img-top" src="{{ product.image.url }}" alt=""></a>
                 <h2>{{ product.price }} руб.</h2>
-                <p><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></p>
+                <p><a href="{% url 'main:brand_detail' product.pk %}">{{ product.title }}</a></p>
 {#                <a href="{% url 'add_to_cart' slug=product.slug %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>#}
                 <a href="{% url 'basket:add' product.pk %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
               </div>
