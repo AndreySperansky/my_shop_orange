@@ -16,7 +16,8 @@
   <div class="breadcrumbs">
     <ol class="breadcrumb">
       <li><a href="{% url 'mainapp:index' %}">Home</a></li>
-      <li class="active">brands:{{ brand.slug }}</li>
+      <li class="active">Brand: {{ brand.name }}</li>
+
     </ol>
   </div>
 {% endblock %}
@@ -56,9 +57,9 @@
           <div class="product-image-wrapper">
             <div class="single-products">
               <div class="productinfo text-center">
-                <a href="{% url 'main:brand_detail' product.pk %}"><img class="card-img-top" src="{{ product.image.url }}" alt=""></a>
+                <a href="{{ product.get_absolute_url }}"><img class="card-img-top" src="{{ product.image.url }}" alt=""></a>
                 <h2>{{ product.price }} руб.</h2>
-                <p><a href="{% url 'main:brand_detail' product.pk %}">{{ product.title }}</a></p>
+                <p><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></p>
 {#                <a href="{% url 'add_to_cart' slug=product.slug %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>#}
                 <a href="{% url 'basket:add' product.pk %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
               </div>
@@ -88,14 +89,15 @@
 
     </div>
     <!-- /.row -->
-    <div class="pagination-area">
-      <ul class="pagination justify-content-end">
-        <li class="page-item"><a href="" class="active">1</a></li>
-        <li class="page-item"><a href="">2</a></li>
-        <li class="page-item"><a href="">3</a></li>
-        <li class="page-item"><a href=""><i class="fa fa-angle-double-right"></i></a></li>
-      </ul>
-    </div>
+    <!-- Pagination -->
+{#    <div class="pagination-area">#}
+{#      <ul class="pagination justify-content-end">#}
+{#        <li class="page-item"><a href="" class="active">1</a></li>#}
+{#        <li class="page-item"><a href="">2</a></li>#}
+{#        <li class="page-item"><a href="">3</a></li>#}
+{#        <li class="page-item"><a href=""><i class="bi bi-chevron-right"></i></a></li>#}
+{#      </ul>#}
+{#    </div>#}
   </div>
 
 {% endblock %}

@@ -24,7 +24,7 @@ class ProductAdmin(admin.ModelAdmin):
     # Внесение добавления в админку
     change_form_template = 'custom_admin/change_form.html'
     # какие поля будут отображаться в админке
-    list_display = ('id', 'category', 'title', 'slug', 'price', 'quantity', 'is_new', 'is_sale', 'is_active')
+    list_display = ('id', 'category', 'brand', 'title', 'slug', 'price', 'quantity', 'is_new', 'is_sale', 'is_active')
     # какие поля будут ссылками на соответствующие модели
     list_display_links = ('id', 'category', 'title',)
     # какие поля будут участвовать в поиске

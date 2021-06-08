@@ -32,6 +32,9 @@ class FeatureValidator(models.Model):
                f"Характристика {self.feature_key.feature_name} | " \
                f"Валидное значение {self.valid_feature_value}"
 
+    class Meta:
+        ordering = ['feature_key', 'valid_feature_value']
+
 
 class ProductFeatures(models.Model):
     """

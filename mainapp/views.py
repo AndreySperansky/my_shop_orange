@@ -71,7 +71,6 @@ class MainView(BasketMixin, View):
             'basket': basket,
             'title': 'Home',
         }
-
         return render(request, 'mainapp/index.html', context)
 
 
@@ -96,7 +95,6 @@ class BrandView(BasketMixin, View):
             'basket': basket,
             'title': 'Brands',
         }
-
         return render(request, 'mainapp/brands.html', context)
 
 
@@ -166,7 +164,7 @@ class ProductDetailView(BasketMixin, ProductMixin, DetailView):
         # context['same_products'] = self.same_products
         context['brands'] = brands
         context['categories'] = self.get_object().category.__class__.objects.all()
-        context['products'] = self.products
+        # context['products'] = self.products
         context['basket'] = self.basket
         context['title'] = 'product-detail'
         return context

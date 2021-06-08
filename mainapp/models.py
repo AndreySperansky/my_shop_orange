@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
-from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
+from specs.models import ProductFeatures
 from django.utils import timezone
 
 
@@ -38,13 +38,13 @@ class Product(models.Model):
     brand = models.ForeignKey(Brand, verbose_name='Бренд', on_delete=models.CASCADE, default= 1)
     title = models.CharField(max_length=255, verbose_name='Наименование')
     slug = models.SlugField(unique=True)
-    image = models.ImageField(verbose_name='Изображение')
+    image = models.ImageField(upload_to='products/%Y/%m/%d/', verbose_name='Изображение')
     price = models.DecimalField(max_digits=9, decimal_places=0, verbose_name='Цена')
     quantity = models.PositiveIntegerField(verbose_name='количество на складе', default=0)
     is_active = models.BooleanField(default=True)
     is_new = models.BooleanField(default=False)
     is_sale = models.BooleanField(default=False)
-    features = models.ManyToManyField("specs.ProductFeatures", blank=True, related_name='features_for_product')
+    features = models.ManyToManyField(ProductFeatures, blank=True, related_name='features_for_product')
     bookmarks = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         through='BookmarkProduct',
@@ -60,6 +60,7 @@ class Product(models.Model):
 
     def get_features(self):
         return {f.feature.feature_name: ' '.join([f.value, f.feature.unit or ""]) for f in self.features.all()}
+        # return {f.feature.feature_name: f.value for f in self.features.all()}
 
 
 # Промежуточная таблица

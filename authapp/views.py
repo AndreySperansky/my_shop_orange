@@ -58,8 +58,6 @@ def register(request):
 
             return HttpResponseRedirect(reverse('auth:login'))
 
-
-
     else:
         register_form = ShopUserRegisterForm()
 
