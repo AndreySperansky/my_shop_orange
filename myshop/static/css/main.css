@@ -1645,6 +1645,12 @@ div .nav.nav-tabs {
 }
 
 
+input #avatar-clear_id {
+  size: 15px;
+  float: left;
+}
+
+
 /*************************
 *******Cart CSS******
 **************************/
